@@ -1,1 +1,5 @@
 all_texts.txt
+
+# Python
+__pycache__/
+*.pyc
