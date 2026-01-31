@@ -17,13 +17,15 @@ Stats files (TSV):
 
 ### Literary source comparison
 
-The `combined_stats.tsv` file compares our corpus frequencies with three Kyrgyz literary works:
+The [`combined_stats.tsv`](combined_stats.tsv) file compares our corpus frequencies with three Kyrgyz literary works:
 Манас, Сынган Кылыч, and Мисмилдирик. The "Corpus(raw)" column uses `raw_chars.tsv` which
 does not exclude stopwords—this provides a fairer comparison since the literary sources also
 include all words.
 
 Note: Literary sources originally showed phonemes with К/Қ and Г/Ғ as distinct. These have
 been merged (К+Қ→к, Г+Ғ→г) for comparison with our corpus which only uses к and г.
+
+![Literary source character frequencies](images/literary_stats.png)
 
 Scripts:
 - `scripts/char_frequency_go.go` (characters + n-grams; optional TSV output)
