@@ -50,7 +50,7 @@ Inputs:
 - `-stopwords /path/to/stopwords.txt` (optional; remove known stopwords before counting)
 - `-min-len 2` (optional; default 2)
 
-### Steps taken (English)
+### Steps taken
 1) Build a stopword list by running the word-frequency tool on the corpus.
 2) Update `config/stopwords.txt` based on the most frequent words.
 3) Re-run the character + n-gram tool to produce updated TSVs.
@@ -61,7 +61,7 @@ go run scripts/stopword_finder_go.go -input all_texts.txt -top 200 -cyrillic-onl
 go run scripts/char_frequency_go.go -input all_texts.txt -cyrillic-only -bigram -trigram -tsv -out-prefix kyr
 ```
 
-### Кадамдар (Кыргызча)
+### Кадамдар
 1) Корпустагы эң көп колдонулган сөздөрдү табуу үчүн сөз жыштыгын эсептөөчү куралды иштетүү.
 2) Натыйжага жараша `config/stopwords.txt` файлын жаңылоо.
 3) Символдор жана n-граммалар боюнча статистиканы кайра эсептеп TSV файлдарын чыгаруу.
@@ -102,14 +102,14 @@ Current layout with frequency (percent, `key|%`):
 ## Kyrgyz keyboard layout (proposed)
 ```
 1 2 3 4 5 6 7 8 9 0
-й ү у к е(ё) н(ң) г ш(щ) ө з х
+й ү у к е(ё) н г ш(щ) ө з х
 ң ы в(ф) а п р о л д ж э
 я ч с(ц) м и т ь(ъ) б ю
 ```
 
 Proposed layout with frequency (percent, `key|%`):
 ```
-й|1.476% ү|2.355% у|4.259% к|6.234% е|5.210%(ё|0.010%) н|8.011%(ң|0.225%) г|2.803% ш|1.679%(щ|0.002%) ө|1.973% з|1.369% х|0.070%
+й|1.476% ү|2.355% у|4.259% к|6.234% е|5.210%(ё|0.010%) н|8.011% г|2.803% ш|1.679%(щ|0.002%) ө|1.973% з|1.369% х|0.070%
 ң|0.225% ы|5.633% в|0.681%(ф|0.138%) а|13.065% п|1.659% р|5.809% о|4.038% л|4.983% д|4.167% ж|1.576% э|0.718%
 я|0.558% ч|1.363% с|2.529%(ц|0.210%) м|3.043% и|5.056% т|5.887% ь|0.073%(ъ|0.005%) б|2.884% ю|0.248%
 ```
