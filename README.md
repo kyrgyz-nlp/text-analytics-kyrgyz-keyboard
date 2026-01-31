@@ -6,13 +6,24 @@ It focuses on character frequencies, n-grams, and a data-backed layout rationale
 ## Stats and tools
 
 Stats files (TSV):
-- `kyr_chars.tsv` (character frequencies)
+- `kyr_chars.tsv` (character frequencies, stopwords excluded)
 - `kyr_bigrams.tsv` (bigram frequencies)
 - `kyr_trigrams.tsv` (trigram frequencies)
-- `raw_chars.tsv` (raw character frequencies, no stopwords)
+- `raw_chars.tsv` (raw character frequencies, stopwords included)
 - `raw_bigrams.tsv` (raw bigram frequencies)
 - `raw_trigrams.tsv` (raw trigram frequencies)
 - `word_freq.tsv` (word frequencies)
+- [`combined_stats.tsv`](combined_stats.tsv) (comparison with literary sources)
+
+### Literary source comparison
+
+The `combined_stats.tsv` file compares our corpus frequencies with three Kyrgyz literary works:
+Манас, Сынган Кылыч, and Мисмилдирик. The "Corpus(raw)" column uses `raw_chars.tsv` which
+does not exclude stopwords—this provides a fairer comparison since the literary sources also
+include all words.
+
+Note: Literary sources originally showed phonemes with К/Қ and Г/Ғ as distinct. These have
+been merged (К+Қ→к, Г+Ғ→г) for comparison with our corpus which only uses к and г.
 
 Scripts:
 - `scripts/char_frequency_go.go` (characters + n-grams; optional TSV output)
