@@ -84,22 +84,24 @@ Proposed placement decisions:
 - **ө** takes the place of **щ** (щ becomes a long-press on **ш**).
 - **ң** takes the place of **ф** (ф becomes a long-press on **в**).
 
-ASCII layout (letters only):
+Current layout (inconvenient, long-press shown in parentheses):
 ```
-й у к е н г ш з х
-ф ы в а п р о л д ж э
-я ч с м и т ь б ю
+1 2 3 4 5 6 7 8 9 0
+й ц у(ү) к е(ё) н(ң) г ш щ з х
+ф ы в а п р о(ө) л д ж э
+я ч с м и т ь(ъ) б ю
 ```
 
 ## Kyrgyz keyboard layout (proposed)
 ```
-й ү у к е ё н ң г ш ө з х
-ф ы в а п р о л д ж э
-я ч с м и т ь б ю
+1 2 3 4 5 6 7 8 9 0
+й ү у к е(ё) н(ң) г ш(щ) ө з х
+ң ы в(ф) а п р о л д ж э
+я ч с(ц) м и т ь(ъ) б ю
 ```
 
 Notes:
-- Long-presses (examples): с→ц, ш→щ, в→ф
+- Long-press is shown in parentheses.
 - Keep digits and punctuation as in the existing keyboard.
 
 ## Кыргызча негиздеме
