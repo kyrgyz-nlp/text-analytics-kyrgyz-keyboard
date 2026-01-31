@@ -35,6 +35,7 @@ func main() {
 	writeTSV := flag.Bool("tsv", false, "Write full sorted lists to TSV files")
 	outPrefix := flag.String("out-prefix", "stats", "Output file prefix for TSV files")
 	stopwordsPath := flag.String("stopwords", "config/stopwords.txt", "Path to stopwords file (one token per line)")
+	excludeWordsPath := flag.String("exclude-words", "config/foreign_words.txt", "Path to extra words to exclude (one token per line)")
 	flag.Parse()
 
 	var f *os.File
@@ -50,11 +51,21 @@ func main() {
 		defer f.Close()
 	}
 
-	// Lowercase, then remove tokens from the stopwords list before counting.
+	// Lowercase, then remove tokens from the stopwords + excluded words lists before counting.
 	removeTokens, err := loadStopwords(*stopwordsPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "load stopwords: %v\n", err)
 		os.Exit(1)
+	}
+	if *excludeWordsPath != "" {
+		extra, err := loadStopwords(*excludeWordsPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "load exclude words: %v\n", err)
+			os.Exit(1)
+		}
+		for k := range extra {
+			removeTokens[k] = true
+		}
 	}
 
 	counts := make(map[rune]uint64, 1024)
@@ -78,11 +89,21 @@ func main() {
 		if len(token) == 0 {
 			return
 		}
-		if removeTokens[string(token)] {
+		cleaned := make([]rune, 0, len(token))
+		for _, r := range token {
+			if unicode.IsLetter(r) {
+				cleaned = append(cleaned, r)
+			}
+		}
+		if len(cleaned) == 0 {
 			token = token[:0]
 			return
 		}
-		for _, r := range token {
+		if removeTokens[string(cleaned)] {
+			token = token[:0]
+			return
+		}
+		for _, r := range cleaned {
 			if !isCountable(r) {
 				continue
 			}

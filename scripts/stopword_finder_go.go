@@ -22,6 +22,7 @@ func main() {
 	cyrOnly := flag.Bool("cyrillic-only", true, "Count only Cyrillic words")
 	minLen := flag.Int("min-len", 2, "Minimum token length")
 	stopwordsPath := flag.String("stopwords", "", "Optional stopwords file (one token per line)")
+	excludeWordsPath := flag.String("exclude-words", "config/foreign_words.txt", "Path to extra words to exclude (one token per line)")
 	writeTSV := flag.Bool("tsv", false, "Write full sorted list to a TSV file")
 	outFile := flag.String("out", "word_freq.tsv", "Output TSV file when -tsv is set")
 	flag.Parse()
@@ -46,6 +47,16 @@ func main() {
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "load stopwords: %v\n", err)
 			os.Exit(1)
+		}
+	}
+	if *excludeWordsPath != "" {
+		extra, err := loadStopwords(*excludeWordsPath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "load exclude words: %v\n", err)
+			os.Exit(1)
+		}
+		for k := range extra {
+			stopwords[k] = true
 		}
 	}
 

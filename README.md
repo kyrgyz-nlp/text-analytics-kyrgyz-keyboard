@@ -20,6 +20,8 @@ Scripts:
 
 Stopwords:
 - `config/stopwords.txt` (one token per line)
+Foreign words:
+- `config/foreign_words.txt` (one token per line; excluded from stats)
 
 ## Text analytics (character + n-gram stats)
 
@@ -35,6 +37,7 @@ go run scripts/char_frequency_go.go -input all_texts.txt -cyrillic-only -bigram 
 Inputs:
 - `-input /path/to/file.txt` (or `-input -` to read from stdin)
 - `-stopwords /path/to/stopwords.txt` (optional; defaults to `config/stopwords.txt`)
+- `-exclude-words /path/to/foreign_words.txt` (optional; defaults to `config/foreign_words.txt`)
 
 ## Stopword finder
 
@@ -48,6 +51,7 @@ go run scripts/stopword_finder_go.go -input all_texts.txt -top 200 -cyrillic-onl
 Inputs:
 - `-input /path/to/file.txt` (or `-input -` to read from stdin)
 - `-stopwords /path/to/stopwords.txt` (optional; remove known stopwords before counting)
+- `-exclude-words /path/to/foreign_words.txt` (optional; defaults to `config/foreign_words.txt`)
 - `-min-len 2` (optional; default 2)
 
 ### Steps taken
